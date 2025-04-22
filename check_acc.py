@@ -17,6 +17,6 @@ for model in os.listdir("./work_dir/models"):
     with open('models_hp.json', mode="r", encoding="utf-8") as models_hp_file:
         models_hp = json.load(models_hp_file)
     with open('models_hp.json', mode="w", encoding="utf-8") as models_hp_file:
-        models_hp.append(info[name])
+        models_hp.append(info)
         json.dump(models_hp, models_hp_file)
     print(info)
