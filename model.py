@@ -42,13 +42,13 @@ try:
 
             oblique_split = tuner.choice("split_axis", ["SPARSE_OBLIQUE"])
             oblique_split.choice("sparse_oblique_normalization", ["NONE", "MIN_MAX", "STANDARD_DEVIATION"])
-            oblique_split.choice("sparse_oblique_num_projections_exponent", list(map(lambda x: x / 10, range(1, 30, 2))))
+            oblique_split.choice("sparse_oblique_num_projections_exponent",
+                                 list(map(lambda x: x / 10, range(1, 30, 2))))
 
             tuner.choice("split_axis", ["AXIS_ALIGNED"], merge=True)
             return tuner
 
         def model_evaluate(model, name):
-            global info, test_data, train_data
             info[name] = {"evaluation_test": 0, "evaluation_train": 0, "hp": 0,
                           "datetime": datetime.now().strftime("%H_%M_%S")}
             info[name]["evaluation_test"] = model.evaluate(test_data).accuracy * 100
@@ -62,7 +62,7 @@ try:
             print(info)
             model.save("./models/" + info[name]["datetime"] + "/")
 
-        save_verbose = ydf.verbose(1)
+        ydf.verbose(0)
 
         tuner = make_tuner()
 
@@ -76,11 +76,15 @@ try:
         ).train("csv:" + ",".join(sharded_train_paths))
 
         model_evaluate(model_gb, "model_gb")
-    N = int(input("Введите N"))
-    T = int(input("Введите T"))
-    for i in range(0, int(input("Введите Numder")), N):
+
+
+    N = int(input("Введите N: "))
+    T = int(input("Введите T: "))
+    for i in range(0, int(input("Введите Numder: ")), N):
         print("Сейчас идет заход номер:", i)
         main(N, T)
+    print("Конец!!!")
+    sys.exit()
 except Exception as e:
     print(e)
     sys.exit()
