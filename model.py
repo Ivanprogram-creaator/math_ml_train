@@ -62,7 +62,7 @@ try:
             print(info)
             model.save("./models/" + info[name]["datetime"] + "/")
 
-        ydf.verbose(0)
+        ydf.verbose(2)
 
         tuner = make_tuner()
 
