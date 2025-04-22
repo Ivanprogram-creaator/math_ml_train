@@ -1,0 +1,23 @@
+import json
+import os
+from datetime import datetime
+
+import ydf
+
+from get_data import get_data
+
+train_data, test_data, sharded_train_paths = get_data()
+info = {}
+for model in os.listdir("models"):
+    name = model
+    loaded_model = ydf.load_model("models/" + model)
+    info[name] = {"evaluation_test": 0, "evaluation_train": 0,
+                  "datetime": datetime.now().strftime("%H_%M_%S")}
+    info[name]["evaluation_test"] = loaded_model.evaluate(test_data).accuracy * 100
+    info[name]["evaluation_train"] = loaded_model.evaluate(train_data).accuracy * 100
+    with open('models_hp.json', mode="r", encoding="utf-8") as models_hp_file:
+        models_hp = json.load(models_hp_file)
+    with open('models_hp.json', mode="w", encoding="utf-8") as models_hp_file:
+        models_hp.append(info[name])
+        json.dump(models_hp, models_hp_file)
+    print(info)
