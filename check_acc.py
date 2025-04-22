@@ -8,9 +8,9 @@ from get_data import get_data
 
 train_data, test_data, sharded_train_paths = get_data()
 info = {}
-for model in os.listdir("models"):
+for model in os.listdir("work_dir/models/"):
     name = model
-    loaded_model = ydf.load_model("models/" + model)
+    loaded_model = ydf.load_model("work_dir/models/" + model)
     info[name] = {"evaluation_test": 0, "evaluation_train": 0,
                   "datetime": datetime.now().strftime("%H_%M_%S")}
     info[name]["evaluation_test"] = loaded_model.evaluate(test_data).accuracy * 100
