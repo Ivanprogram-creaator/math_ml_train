@@ -21,8 +21,8 @@ try:
             workers = []
             treats_copies = []
             for i in range(n):
-                treats_copies.append(create_worker_thread(8100 + n + 1))
-                workers.append("localhost:" + str(8100 + n + 1))
+                treats_copies.append(create_worker_thread(8100 + i + 1))
+                workers.append("localhost:" + str(8100 + i + 1))
             return workers, treats_copies
 
         def make_tuner():
