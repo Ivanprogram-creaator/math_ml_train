@@ -75,8 +75,8 @@ def main(nums, treats):
     ).train("csv:" + ",".join(sharded_train_paths))
 
     model_evaluate(model_gb, "model_gb")
-N = int(input())
-T = int(input())
-for i in range(0, 10000000000, N):
+N = int(input("Введите N"))
+T = int(input("Введите T"))
+for i in range(0, int(input("Введите Numder")), N):
     print("Сейчас идет заход номер:", i)
     main(N, T)
