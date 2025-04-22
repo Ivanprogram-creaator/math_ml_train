@@ -64,7 +64,6 @@ try:
             print(info)
             model.save("./models/" + info[name]["datetime"] + "/")
 
-
         ydf.verbose(2)
 
         tuner = make_tuner()
@@ -88,11 +87,7 @@ try:
         print("Сейчас идет заход номер:", i)
         treat_copies = main(N, T)
     print("Конец!!!")
-    pill2kill = threading.Event()
-    pill2kill.set()
-    for el in treat_copies:
-        el.do_run = False
-    sys.exit()
+
 except Exception as e:
     print(e)
     sys.exit()
