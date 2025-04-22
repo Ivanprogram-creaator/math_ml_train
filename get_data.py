@@ -27,7 +27,6 @@ def get_data():
     sharded_train_paths = split_dataset(train_data, "train_data", 10)
     return train_data, test_data, sharded_train_paths
 
-
 def split_dataset(
         dataset: pd.DataFrame, tmp_dir: str, num_shards: int
 ) -> list[str]:
