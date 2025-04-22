@@ -15,13 +15,15 @@ try:
         def create_worker_thread(port):
             thread = threading.Thread(target=ydf.start_worker, args=(port,))
             thread.start()
+            return thread
 
         def create_workers(n):
             workers = []
+            treats_copies = []
             for i in range(n):
-                create_worker_thread(8100 + n + 1)
+                treats_copies.append(create_worker_thread(8100 + n + 1))
                 workers.append("localhost:" + str(8100 + n + 1))
-            return workers
+            return workers, treats_copies
 
         def make_tuner():
             tuner = ydf.RandomSearchTuner(num_trials=nums)
@@ -62,28 +64,34 @@ try:
             print(info)
             model.save("./models/" + info[name]["datetime"] + "/")
 
+
         ydf.verbose(2)
 
         tuner = make_tuner()
-
+        workers, treat_copies = create_workers(treats)
         model_gb = ydf.GradientBoostedTreesLearner(
             label="Номер_куба",
             task=ydf.Task.CLASSIFICATION,
             tuner=tuner,
-            workers=create_workers(treats),
+            workers=workers,
             working_dir="work_dir",
             resume_training=True,
         ).train("csv:" + ",".join(sharded_train_paths))
 
         model_evaluate(model_gb, "model_gb")
+        return treat_copies
 
 
     N = int(input("Введите N: "))
     T = int(input("Введите T: "))
     for i in range(0, int(input("Введите Numder: ")), N):
         print("Сейчас идет заход номер:", i)
-        main(N, T)
+        treat_copies = main(N, T)
     print("Конец!!!")
+    pill2kill = threading.Event()
+    pill2kill.set()
+    for el in treat_copies:
+        el.do_run = False
     sys.exit()
 except Exception as e:
     print(e)
