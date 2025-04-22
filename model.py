@@ -26,7 +26,7 @@ try:
             return workers, treats_copies
 
         def make_tuner():
-            tuner = ydf.VizierTuner(num_trials=nums)
+            tuner = ydf.RandomSearchTuner(num_trials=nums)
             tuner.choice("num_trees",
                          [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1100])
             tuner.choice("categorical_algorithm", ["RANDOM", "CART", "ONE_HOT"])
