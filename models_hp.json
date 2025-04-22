@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "evaluation_test": 63.33333333333333,
+    "evaluation_train": 84.21052631578947,
+    "hp": {
+      "num_trees": 550,
+      "categorical_algorithm": "ONE_HOT",
+      "shrinkage": 0.18,
+      "growing_strategy": "BEST_FIRST_GLOBAL",
+      "max_num_nodes": 820,
+      "num_candidate_attributes_ratio": 0.02,
+      "min_examples": 13,
+      "use_hessian_gain": "true",
+      "split_axis": "SPARSE_OBLIQUE",
+      "sparse_oblique_normalization": "NONE",
+      "sparse_oblique_num_projections_exponent": 0.7
+    },
+    "datetime": "11_52_57"
+  },
+  {
+    "evaluation_test": 76.66666666666667,
+    "evaluation_train": 85.0415512465374,
+    "hp": {
+      "num_trees": 700,
+      "categorical_algorithm": "RANDOM",
+      "shrinkage": 0.2,
+      "growing_strategy": "LOCAL",
+      "max_depth": 3,
+      "num_candidate_attributes_ratio": 0.005,
+      "min_examples": 10,
+      "use_hessian_gain": "false",
+      "split_axis": "SPARSE_OBLIQUE",
+      "sparse_oblique_normalization": "STANDARD_DEVIATION",
+      "sparse_oblique_num_projections_exponent": 1.5
+    },
+    "datetime": "12_11_33"
+  }
+]
