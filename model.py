@@ -78,4 +78,5 @@ def main(nums, treats):
 N = int(input())
 T = int(input())
 for i in range(0, 10000000000, N):
+    print("Сейчас идет заход номер:", i)
     main(N, T)
