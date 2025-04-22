@@ -34,5 +34,23 @@
       "sparse_oblique_num_projections_exponent": 1.5
     },
     "datetime": "12_11_33"
+  },
+  {
+    "evaluation_test": 67.77777777777779,
+    "evaluation_train": 85.0415512465374,
+    "hp": {
+      "num_trees": 700,
+      "categorical_algorithm": "RANDOM",
+      "shrinkage": 0.1,
+      "growing_strategy": "LOCAL",
+      "max_depth": 3,
+      "num_candidate_attributes_ratio": 0.005,
+      "min_examples": 14,
+      "use_hessian_gain": "false",
+      "split_axis": "SPARSE_OBLIQUE",
+      "sparse_oblique_normalization": "NONE",
+      "sparse_oblique_num_projections_exponent": 2.9
+    },
+    "datetime": "12_26_24"
   }
 ]
