@@ -10,7 +10,7 @@ def get_data():
     train_data = df.iloc[df.index <= len_df * 0.8]
     test_data = df.loc[df.index >= len_df * 0.8]
     sharded_train_paths = split_dataset(train_data, "train_data", 10)
-    return train_data, test_data, sharded_train_paths
+    return train_data, test_data, sharded_train_paths, df
 
 
 def split_dataset(
